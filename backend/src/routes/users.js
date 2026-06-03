@@ -1,0 +1,12 @@
+const express = require('express');
+const router  = express.Router();
+const { getUsers, getUserById, updateProfile, updateUser, deleteUser, getAffiliates } = require('../controllers/userController');
+const { protect, adminOnly } = require('../middleware/auth');
+router.use(protect);
+router.get('/affiliates', getAffiliates);
+router.put('/profile',    updateProfile);
+router.get('/',           adminOnly, getUsers);
+router.get('/:id',        adminOnly, getUserById);
+router.put('/:id',        adminOnly, updateUser);
+router.delete('/:id',     adminOnly, deleteUser);
+module.exports = router;

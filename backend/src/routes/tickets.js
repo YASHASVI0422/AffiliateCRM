@@ -1,0 +1,12 @@
+const express = require('express');
+const router  = express.Router();
+const { getTickets, getTicket, createTicket, updateTicket, replyToTicket, getTicketStats } = require('../controllers/ticketController');
+const { protect, adminOnly } = require('../middleware/auth');
+router.use(protect);
+router.get('/stats',      getTicketStats);
+router.get('/',           getTickets);
+router.get('/:id',        getTicket);
+router.post('/',          createTicket);
+router.put('/:id',        adminOnly, updateTicket);
+router.post('/:id/reply', replyToTicket);
+module.exports = router;

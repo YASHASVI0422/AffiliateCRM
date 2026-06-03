@@ -1,0 +1,11 @@
+const express = require('express');
+const router  = express.Router();
+const { getDashboardInsight, suggestTicketReply, scoreLeadAI, scoreAllLeads, generateLeadNotes } = require('../controllers/aiController');
+const { protect, adminOnly } = require('../middleware/auth');
+router.use(protect);
+router.post('/dashboard-insight',      getDashboardInsight);
+router.post('/suggest-reply/:ticketId', suggestTicketReply);
+router.post('/score-lead/:leadId',     scoreLeadAI);
+router.post('/score-all-leads',        scoreAllLeads);
+router.post('/generate-notes/:leadId', generateLeadNotes);
+module.exports = router;

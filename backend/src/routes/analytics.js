@@ -1,0 +1,12 @@
+const express = require('express');
+const router  = express.Router();
+const { getOverview, getLeadsOverTime, getPipelineData, getAffiliatePerformance, getActivity, getTicketTrends } = require('../controllers/analyticsController');
+const { protect, adminOnly } = require('../middleware/auth');
+router.use(protect);
+router.get('/overview',              getOverview);
+router.get('/leads-over-time',       getLeadsOverTime);
+router.get('/pipeline',              getPipelineData);
+router.get('/affiliate-performance', getAffiliatePerformance);
+router.get('/activity',              getActivity);
+router.get('/ticket-trends',         getTicketTrends);
+module.exports = router;
