@@ -4,6 +4,28 @@ AffiliateCRM is a highly optimized, modern MERN (MongoDB, Express, React, Node.j
 
 ---
 
+## 🛠️ Tech Stack & Tooling
+
+### Frontend
+* **Core Framework**: React 18 with Vite (fast hot-reloading dev server)
+* **State Management**: TanStack Query (React Query) for robust caching and server-state synchronization
+* **Real-time Comms**: Socket.io Client for immediate bidirectional notifications
+* **Styling**: TailwindCSS with CSS custom variables for a responsive, clean, and interactive user interface
+
+### Backend
+* **Runtime & Framework**: Node.js & Express.js
+* **Database Driver**: Mongoose (MongoDB object modeling)
+* **Real-time Server**: Socket.io Server for user-specific notification rooms
+* **AI Engine**: Google Gen AI SDK utilizing the free Gemini API
+* **Security & Tokens**: JWT (JSON Web Tokens), Bcrypt.js (password hashing), and `nanoid` (cryptographically secure identifier generation)
+
+### Testing Suite
+* **Testing Framework**: Jest
+* **Integration Driver**: Supertest
+* **In-Memory Server**: `mongodb-memory-server` to run mock database environments in isolation with 100% data safety
+
+---
+
 ## 🚀 Key Features
 
 ### 💻 Modern Visual Experience
@@ -167,77 +189,6 @@ Verify code status and API endpoints using the automated testing suite:
 cd ../backend
 npm run test
 ```
-
----
-
-## ☁️ Production Deployment Guide
-
-Deploying a MERN stack application involves hosting the compiled frontend (Vite React application) as static assets, setting up the Node.js backend server on a live host, and configuring a cloud database cluster.
-
-### 📦 Does the GitHub Repository contain the build files?
-**No.** It is a development best practice to exclude build files (like `dist/` or `build/` folders) from Git. This project's `.gitignore` keeps these folders untracked. 
-When deploying, **Netlify** or your chosen host will pull your source code from GitHub, install dependencies, and build the fresh static files directly on their server. This avoids codebase clutter and guarantees that the build always matches your latest branch commit.
-
----
-
-### 🌐 Deploying the Frontend (Netlify)
-
-Since this repository is a monorepo containing both a frontend and backend folder, we have included a root `netlify.toml` file to automate deployment configuration.
-
-1. **Sign Up/In**: Go to [Netlify](https://www.netlify.com/) and sign in.
-2. **Import Project**: Click **"Add new site"** → **"Import an existing project"**. Connect your GitHub account and select the `AffiliateCRM` repository.
-3. **Automatic Configuration**: Netlify will read the root `netlify.toml` file automatically and pre-configure the build settings:
-   * **Base directory**: `frontend`
-   * **Build command**: `npm run build`
-   * **Publish directory**: `dist`
-4. **Set Environment Variables**: 
-   * Under the site configuration, go to **Site settings** → **Environment variables**.
-   * Add `VITE_API_URL` and point it to your deployed Backend URL (e.g., `https://your-backend.onrender.com/api`).
-5. **Deploy**: Click **Deploy Site**. Netlify will build your application and generate a public URL.
-
----
-
-### 🖥️ Hosting the Backend for Free
-
-To host the backend API server for free, use a Node.js-compatible hosting provider.
-
-#### Option A: Render (Render.com) — Recommended
-Render provides a free web service hosting tier that automatically pulls from GitHub.
-1. Create a free account at [Render](https://render.com/).
-2. Click **New** → **Web Service** and link your GitHub repository.
-3. Set the following build settings:
-   * **Name**: `affiliate-crm-api`
-   * **Root Directory**: `backend`
-   * **Runtime**: `Node`
-   * **Build Command**: `npm install`
-   * **Start Command**: `node server.js`
-4. Click **Advanced** to add the Environment Variables:
-   * `PORT`: `10000` (Render handles this, but setting it explicitly is a good practice)
-   * `NODE_ENV`: `production`
-   * `MONGODB_URI`: *Your MongoDB Atlas connection string (see below)*
-   * `JWT_SECRET`: *A secure random secret key*
-   * `JWT_EXPIRES_IN`: `7d`
-   * `FRONTEND_URL`: *Your Netlify frontend URL*
-   * `GEMINI_API_KEY`: *Your Google AI Studio Gemini API Key*
-5. Click **Create Web Service**. 
-   > ℹ️ *Note: Render's free tier services will spin down (sleep) after 15 minutes of inactivity. When a request is received after sleeping, it takes about 50 seconds to spin back up.*
-
----
-
-### 🗄️ Setting Up a Free Cloud Database (MongoDB Atlas)
-
-To allow your deployed backend to access a database, set up a free database cluster on MongoDB Atlas.
-
-1. Create a free account at [MongoDB Atlas](https://www.mongodb.com/cloud/atlas).
-2. Click **Create** to deploy a new database cluster. Select the **M0 Free** cluster tier.
-3. Choose your preferred cloud provider and region, then click **Create**.
-4. In **Security Quickstart**:
-   * Set up a database user (username and password). Note down these credentials.
-   * Under **IP Access List**, select **"Allow Access from Anywhere"** (`0.0.0.0/0`) since hosting platforms like Render rotate their outbound IP addresses.
-5. In **Database** -> **Clusters**, click **Connect** → **Drivers**.
-6. Copy the connection string. It will look like this:
-   `mongodb+srv://<username>:<password>@cluster0.xxxxx.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`
-7. Replace `<username>` and `<password>` with your database user credentials. Paste this connection string as the `MONGODB_URI` environment variable in your backend host (e.g., Render).
 
 ---
 
