@@ -7,6 +7,10 @@ const connectDB    = require('./src/config/db');
 const errorHandler = require('./src/middleware/errorHandler');
 
 dotenv.config();
+
+console.log("NODE_ENV:", process.env.NODE_ENV);
+console.log("FRONTEND_URL:", process.env.FRONTEND_URL);
+
 connectDB();
 
 const app = express();
