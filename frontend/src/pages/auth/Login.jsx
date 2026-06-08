@@ -22,7 +22,7 @@ export default function Login() {
   };
 
   const fill = role => role === 'admin'
-    ? setForm({ email: 'admin@affiliatecrm.com', password: 'admin123' })
+    ? setForm({ email: 'ypandey865@gmail.com', password: 'Y@sh0422' })
     : setForm({ email: 'sarah@affiliatecrm.com', password: 'affiliate123' });
 
   return (
