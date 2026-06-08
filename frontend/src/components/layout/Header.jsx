@@ -19,13 +19,13 @@ const titles = {
 };
 
 const activityIcons = {
-  lead_created:   { icon:Target,   color:'text-cyan-400',    bg:'bg-cyan-500/10' },
+  lead_created:   { icon:Target,   color:'text-[#a8ff3e]',    bg:'bg-[#a8ff3e]/10' },
   lead_converted: { icon:Check,    color:'text-emerald-400', bg:'bg-emerald-500/10' },
   lead_updated:   { icon:Target,   color:'text-amber-400',   bg:'bg-amber-500/10' },
   ticket_created: { icon:Ticket,   color:'text-red-400',     bg:'bg-red-500/10' },
-  ticket_replied: { icon:Activity, color:'text-violet-400',  bg:'bg-violet-500/10' },
+  ticket_replied: { icon:Activity, color:'text-[#8ee62c]',  bg:'bg-[#8ee62c]/10' },
   ticket_updated: { icon:Ticket,   color:'text-amber-400',   bg:'bg-amber-500/10' },
-  user_registered:{ icon:Users,    color:'text-sky-400',     bg:'bg-sky-500/10' },
+  user_registered:{ icon:Users,    color:'text-[#a8ff3e]',    bg:'bg-[#a8ff3e]/10' },
   user_login:     { icon:User,     color:'text-slate-500',   bg:'bg-white/5' },
 };
 
@@ -66,11 +66,11 @@ function QuickSearchModal({ onClose }) {
       <div className="absolute inset-0 bg-black/70 backdrop-blur-md" />
       <div
         className="relative w-full max-w-xl shadow-2xl animate-slide-up overflow-hidden"
-        style={{ background: 'rgb(10 14 24)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '1rem' }}
+        style={{ background: '#111c14', border: '1px solid rgba(168,255,62,0.15)', borderRadius: '1rem' }}
         onClick={e => e.stopPropagation()}
       >
         {/* Gradient top accent */}
-        <div className="absolute top-0 left-0 right-0 h-[1px]" style={{background: 'linear-gradient(90deg, transparent, #06b6d4, #8b5cf6, transparent)'}} />
+        <div className="absolute top-0 left-0 right-0 h-[1px]" style={{background: 'linear-gradient(90deg, transparent, #a8ff3e, #10b981, transparent)'}} />
 
         {/* Search input */}
         <div className="flex items-center gap-3 px-4 py-3 border-b border-white/8">
@@ -83,7 +83,7 @@ function QuickSearchModal({ onClose }) {
             className="flex-1 bg-transparent text-slate-200 text-sm outline-none placeholder-slate-500"
             onKeyDown={e => e.key === 'Escape' && onClose()}
           />
-          {loading && <div className="w-4 h-4 border-2 border-cyan-500 border-t-transparent rounded-full animate-spin flex-shrink-0" />}
+          {loading && <div className="w-4 h-4 border-2 border-[#a8ff3e] border-t-transparent rounded-full animate-spin flex-shrink-0" />}
           <button onClick={onClose} className="text-slate-500 hover:text-slate-200 transition-colors flex-shrink-0">
             <X size={16} />
           </button>
@@ -105,8 +105,8 @@ function QuickSearchModal({ onClose }) {
                   {results.leads.map(l => (
                     <button key={l._id} onClick={() => goTo('/leads')}
                       className="w-full flex items-center gap-3 px-4 py-2.5 hover:bg-white/5 transition-colors text-left">
-                      <div className="w-7 h-7 rounded-lg bg-cyan-500/10 flex items-center justify-center flex-shrink-0">
-                        <Target size={13} className="text-cyan-400" />
+                      <div className="w-7 h-7 rounded-lg bg-[#a8ff3e]/10 flex items-center justify-center flex-shrink-0">
+                        <Target size={13} className="text-[#a8ff3e]" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="text-slate-200 text-sm font-medium truncate">{l.name}</div>
@@ -178,15 +178,12 @@ export default function Header({ toggleSidebar }) {
     return () => document.removeEventListener('keydown', h);
   }, []);
 
-  const handleLogout = async () => {
-    try {
-      await api.post('/auth/logout');
-    } catch (e) {
-      // Ignore logout errors silently
-    }
-    logout();
-    toast.success('Logged out');
-    navigate('/login');
+  const handleLogout = () => {
+    navigate('/', { replace: true });
+    setTimeout(() => {
+      logout();
+      toast.success('Logged out');
+    }, 100);
   };
 
   const handleNotifClick = (n) => {
@@ -201,15 +198,15 @@ export default function Header({ toggleSidebar }) {
   };
 
   const unreadCount = notifications.filter(n => !n.read).length;
-  const panelStyle = { background:'rgb(8 12 20)', border:'1px solid rgba(255,255,255,0.08)', borderRadius:'1rem' };
+  const panelStyle = { background:'#111c14', border:'1px solid rgba(168,255,62,0.15)', borderRadius:'1rem' };
 
   return (
     <>
-      <header className="h-16 flex items-center justify-between px-6 border-b border-white/6 flex-shrink-0 relative z-40" style={{background:'rgb(6 9 15)'}}>
+      <header className="h-16 flex items-center justify-between px-6 border-b border-white/6 flex-shrink-0 relative z-40" style={{background:'#0a1a0f'}}>
         <div className="flex items-center gap-3">
           <button
             onClick={toggleSidebar}
-            className="md:hidden w-9 h-9 flex items-center justify-center rounded-xl bg-white/5 border border-white/8 hover:border-cyan-500/20 text-slate-400 hover:text-slate-200 transition-all"
+            className="md:hidden w-9 h-9 flex items-center justify-center rounded-xl bg-white/5 border border-white/8 hover:border-[#a8ff3e]/20 text-slate-400 hover:text-slate-200 transition-all"
           >
             <Menu size={16} />
           </button>
@@ -222,7 +219,7 @@ export default function Header({ toggleSidebar }) {
           {/* Search */}
           <button
             onClick={() => setShowSearch(true)}
-            className="hidden md:flex items-center gap-2 bg-white/5 border border-white/8 rounded-xl px-3 py-2 text-sm text-slate-500 w-52 cursor-pointer hover:border-cyan-500/20 hover:bg-white/8 transition-all"
+            className="hidden md:flex items-center gap-2 bg-white/5 border border-white/8 rounded-xl px-3 py-2 text-sm text-slate-500 w-52 cursor-pointer hover:border-[#a8ff3e]/20 hover:bg-white/8 transition-all"
           >
             <Search size={14}/><span>Quick search...</span>
             <span className="ml-auto text-[10px] text-slate-600 border border-white/10 rounded px-1">⌘K</span>
@@ -231,24 +228,24 @@ export default function Header({ toggleSidebar }) {
           {/* Bell */}
           <div className="relative" ref={notifRef}>
             <button onClick={()=>{setShowNotif(!showNotif);setShowProfile(false);}}
-              className="relative w-9 h-9 flex items-center justify-center rounded-xl bg-white/5 border border-white/8 hover:border-cyan-500/20 text-slate-500 hover:text-slate-200 transition-all">
+              className="relative w-9 h-9 flex items-center justify-center rounded-xl bg-white/5 border border-white/8 hover:border-[#a8ff3e]/20 text-slate-500 hover:text-slate-200 transition-all">
               <Bell size={16}/>
-              {unreadCount > 0 && <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full text-white text-[10px] font-bold flex items-center justify-center" style={{background:'linear-gradient(135deg, #06b6d4, #8b5cf6)'}}>{unreadCount}</span>}
+              {unreadCount > 0 && <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full text-slate-950 text-[10px] font-bold flex items-center justify-center" style={{background:'linear-gradient(135deg, #a8ff3e, #10b981)'}}>{unreadCount}</span>}
             </button>
             {showNotif && (
               <div className="absolute right-0 top-11 w-80 shadow-2xl overflow-hidden animate-slide-up" style={panelStyle}>
-                <div className="absolute top-0 left-0 right-0 h-[1px]" style={{background: 'linear-gradient(90deg, transparent, #06b6d4, #8b5cf6, transparent)'}} />
+                <div className="absolute top-0 left-0 right-0 h-[1px]" style={{background: 'linear-gradient(90deg, transparent, #a8ff3e, #10b981, transparent)'}} />
                 <div className="flex items-center justify-between px-4 py-3 border-b border-white/8">
                   <span className="text-slate-100 font-semibold text-sm" style={{fontFamily:'Sora,sans-serif'}}>Notifications</span>
-                  <button onClick={clearAll} className="text-xs text-cyan-400 hover:text-cyan-300 font-medium bg-transparent border-none outline-none">Mark all read</button>
+                  <button onClick={clearAll} className="text-xs text-[#a8ff3e] hover:text-[#a8ff3e]/80 font-medium bg-transparent border-none outline-none">Mark all read</button>
                 </div>
                 <div className="max-h-80 overflow-y-auto scrollbar-thin">
                   {notifications.length === 0 ? (
                     <div className="py-8 text-center text-slate-500 text-sm">No notifications yet</div>
                   ) : notifications.slice(0,10).map((n) => {
                     const Icon = n.entityType === 'Ticket' ? Ticket : Target;
-                    const iconColor = n.entityType === 'Ticket' ? 'text-red-400' : 'text-cyan-400';
-                    const iconBg = n.entityType === 'Ticket' ? 'bg-red-500/10' : 'bg-cyan-500/10';
+                    const iconColor = n.entityType === 'Ticket' ? 'text-red-400' : 'text-[#a8ff3e]';
+                    const iconBg = n.entityType === 'Ticket' ? 'bg-red-500/10' : 'bg-[#a8ff3e]/10';
                     return (
                       <div key={n.id} onClick={() => { handleNotifClick(n); markAsRead(n.id); }} className={`flex items-start gap-3 px-4 py-3 hover:bg-white/5 transition-colors cursor-pointer border-b border-white/4 last:border-0 ${!n.read ? 'bg-white/[0.02]' : ''}`}>
                         <div className={`w-8 h-8 rounded-lg ${iconBg} flex items-center justify-center flex-shrink-0 mt-0.5`}><Icon size={14} className={iconColor}/></div>
@@ -277,7 +274,7 @@ export default function Header({ toggleSidebar }) {
             </button>
             {showProfile && (
               <div className="absolute right-0 top-11 w-64 shadow-2xl overflow-hidden animate-slide-up" style={panelStyle}>
-                <div className="absolute top-0 left-0 right-0 h-[1px]" style={{background: 'linear-gradient(90deg, transparent, #06b6d4, #8b5cf6, transparent)'}} />
+                <div className="absolute top-0 left-0 right-0 h-[1px]" style={{background: 'linear-gradient(90deg, transparent, #a8ff3e, #10b981, transparent)'}} />
                 {/* User Info */}
                 <div className="px-4 py-4 border-b border-white/8">
                   <div className="flex items-center gap-3">
@@ -289,9 +286,9 @@ export default function Header({ toggleSidebar }) {
                     </div>
                   </div>
                   {user?.affiliateCode && (
-                    <div className="mt-3 px-3 py-1.5 rounded-lg" style={{background:'rgba(6,182,212,0.08)', border:'1px solid rgba(6,182,212,0.15)'}}>
+                    <div className="mt-3 px-3 py-1.5 rounded-lg" style={{background:'rgba(168,255,62,0.08)', border:'1px solid rgba(168,255,62,0.15)'}}>
                       <span className="text-slate-500 text-[10px]">Affiliate Code: </span>
-                      <span className="text-cyan-300 text-xs font-mono font-semibold">{user.affiliateCode}</span>
+                      <span className="text-[#a8ff3e] text-xs font-mono font-semibold">{user.affiliateCode}</span>
                     </div>
                   )}
                 </div>

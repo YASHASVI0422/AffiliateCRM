@@ -18,12 +18,12 @@ export default class ErrorBoundary extends Component {
   render() {
     if (this.state.hasError) {
       return (
-        <div className="min-h-screen flex items-center justify-center p-4" style={{ backgroundColor: 'rgb(6 9 15)' }}>
+        <div className="min-h-screen flex items-center justify-center p-4" style={{ backgroundColor: '#0a1a0f' }}>
           <div 
             className="w-full max-w-md p-6 text-center space-y-4"
             style={{
-              backgroundColor: 'rgb(10 14 24)',
-              border: '1px solid rgba(255, 255, 255, 0.1)',
+              backgroundColor: '#111c14',
+              border: '1px solid rgba(168,255,62,0.15)',
               borderRadius: '1rem'
             }}
           >
@@ -39,7 +39,7 @@ export default class ErrorBoundary extends Component {
             <button 
               onClick={() => window.location.reload()} 
               className="btn-primary text-sm w-full py-2.5 rounded-xl font-medium transition-all"
-              style={{ background: 'linear-gradient(135deg, #06b6d4, #8b5cf6)', border: 'none', color: '#fff' }}
+              style={{ background: 'linear-gradient(135deg, #a8ff3e, #10b981)', border: 'none', color: '#000000' }}
             >
               Reload page
             </button>

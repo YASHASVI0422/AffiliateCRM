@@ -86,16 +86,16 @@ export default function Tickets() {
       :tickets.length===0?<div className="card"><EmptyState icon={Ticket} title="No tickets" description="Create a ticket to get support" action={<button onClick={()=>setShowModal(true)} className="btn-primary text-sm flex items-center gap-2 mx-auto"><Plus size={14}/>New Ticket</button>}/></div>
       :<div className="space-y-2">
         {tickets.map(t=>(
-          <div key={t._id} onClick={()=>navigate(`/tickets/${t._id}`)} className="card p-4 cursor-pointer hover:border-cyan-500/15 transition-all duration-200 group">
+          <div key={t._id} onClick={()=>navigate(`/tickets/${t._id}`)} className="card p-4 cursor-pointer hover:border-[#a8ff3e]/15 transition-all duration-200 group">
             <div className="flex items-start gap-4">
-              <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center flex-shrink-0 group-hover:bg-cyan-500/10 transition-colors">
-                <Ticket size={18} className="text-slate-500 group-hover:text-cyan-400 transition-colors"/>
+              <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center flex-shrink-0 group-hover:bg-[#a8ff3e]/10 transition-colors">
+                <Ticket size={18} className="text-slate-500 group-hover:text-[#a8ff3e] transition-colors"/>
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-start justify-between gap-3">
-                  <div>
+                   <div>
                     <div className="flex items-center gap-2 mb-1">
-                      <span className="font-mono text-xs text-cyan-400">{t.ticketId}</span>
+                      <span className="font-mono text-xs text-[#a8ff3e]">{t.ticketId}</span>
                       <Badge label={t.status}/>
                       <span className={`text-xs font-medium ${pColors[t.priority]}`}>● {t.priority}</span>
                     </div>
@@ -104,7 +104,7 @@ export default function Tickets() {
                   </div>
                   <div className="flex items-center gap-2 flex-shrink-0">
                     {t.replies?.length>0&&<div className="flex items-center gap-1 text-slate-500 text-xs"><MessageSquare size={12}/><span>{t.replies.length}</span></div>}
-                    <ArrowUpRight size={16} className="text-slate-600 group-hover:text-cyan-400 transition-colors"/>
+                    <ArrowUpRight size={16} className="text-slate-600 group-hover:text-[#a8ff3e] transition-colors"/>
                   </div>
                 </div>
                 <div className="flex items-center gap-3 mt-2 text-xs text-slate-600">

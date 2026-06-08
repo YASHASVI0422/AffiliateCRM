@@ -109,9 +109,9 @@ export default function TicketDetail() {
     <div className="max-w-4xl mx-auto space-y-4">
       {/* Header */}
       <div className="flex items-center gap-3">
-        <button onClick={()=>navigate('/tickets')} className="w-9 h-9 flex items-center justify-center rounded-xl bg-white/5 border border-white/8 hover:bg-white/10 hover:border-cyan-500/20 text-slate-400 hover:text-slate-200 transition-all"><ArrowLeft size={16}/></button>
+        <button onClick={()=>navigate('/tickets')} className="w-9 h-9 flex items-center justify-center rounded-xl bg-white/5 border border-white/8 hover:bg-white/10 hover:border-[#a8ff3e]/20 text-slate-400 hover:text-slate-200 transition-all"><ArrowLeft size={16}/></button>
         <div className="flex-1">
-          <div className="flex items-center gap-2"><span className="font-mono text-sm text-cyan-400">{ticket.ticketId}</span><Badge label={ticket.status}/><span className={`text-xs font-medium ${pColors[ticket.priority]}`}>● {ticket.priority}</span></div>
+          <div className="flex items-center gap-2"><span className="font-mono text-sm text-[#a8ff3e]">{ticket.ticketId}</span><Badge label={ticket.status}/><span className={`text-xs font-medium ${pColors[ticket.priority]}`}>● {ticket.priority}</span></div>
           <h1 className="text-slate-100 font-semibold text-lg" style={{fontFamily:'Sora,sans-serif'}}>{ticket.subject}</h1>
         </div>
       </div>
@@ -130,7 +130,7 @@ export default function TicketDetail() {
                 <div className="flex items-center gap-2 mb-1.5 flex-wrap">
                   <span className="text-xs font-semibold text-slate-200">{ticket.user?.name}</span>
                   <span className="text-[10px] text-slate-500">{format(new Date(ticket.createdAt),'MMM d, yyyy · h:mm a')}</span>
-                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/15">{ticket.category}</span>
+                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#a8ff3e]/10 text-[#a8ff3e] border border-[#a8ff3e]/15">{ticket.category}</span>
                 </div>
                 <p className="text-slate-300 text-sm leading-relaxed whitespace-pre-wrap">{ticket.description}</p>
                 {ticket.screenshot && (
@@ -138,7 +138,7 @@ export default function TicketDetail() {
                     <img 
                       src={ticket.screenshot} 
                       alt="Initial Screenshot" 
-                      className="max-w-full rounded-xl border border-white/10 hover:border-cyan-500/20 cursor-zoom-in hover:scale-[1.01] transition-all"
+                      className="max-w-full rounded-xl border border-white/10 hover:border-[#a8ff3e]/20 cursor-zoom-in hover:scale-[1.01] transition-all"
                       onClick={() => window.open(ticket.screenshot, '_blank')}
                     />
                   </div>
@@ -153,22 +153,22 @@ export default function TicketDetail() {
                 <div key={i} className={`flex items-start gap-3 ${isMe ? 'justify-end' : 'justify-start'}`}>
                   {!isMe && (
                     r.isAdmin ? (
-                      <div className="w-9 h-9 rounded-xl flex items-center justify-center text-white flex-shrink-0 bg-gradient-to-tr from-cyan-500 to-violet-500 shadow-md"><Shield size={14}/></div>
+                      <div className="w-9 h-9 rounded-xl flex items-center justify-center text-slate-950 flex-shrink-0 bg-gradient-to-tr from-[#a8ff3e] to-[#10b981] shadow-md"><Shield size={14}/></div>
                     ) : (
                       <Avatar name={r.author?.name} avatar={r.author?.avatar} size={36} className="rounded-xl flex-shrink-0" />
                     )
                   )}
                   <div className={`max-w-[80%] rounded-2xl p-4 border ${
                     isMe 
-                      ? 'bg-gradient-to-tr from-cyan-500/10 to-violet-500/10 border-cyan-500/20 shadow-[0_0_15px_rgba(6,182,212,0.02)]' 
+                      ? 'bg-gradient-to-tr from-[#a8ff3e]/10 to-[#10b981]/10 border-[#a8ff3e]/20 shadow-[0_0_15px_rgba(168,255,62,0.02)]' 
                       : r.isAdmin 
-                        ? 'bg-cyan-500/5 border-cyan-500/15 shadow-[0_0_15px_rgba(6,182,212,0.01)]' 
+                        ? 'bg-[#a8ff3e]/5 border-[#a8ff3e]/15 shadow-[0_0_15px_rgba(168,255,62,0.01)]' 
                         : 'bg-slate-900/40 border-white/5'
                   }`}>
                     <div className="flex items-center gap-2 mb-1.5 flex-wrap">
                       <span className="text-xs font-semibold text-slate-200">{r.author?.name}</span>
                       {r.isAdmin && (
-                        <span className="text-[10px] px-1.5 py-0.5 rounded bg-cyan-500/15 text-cyan-300 font-semibold uppercase tracking-wider scale-90 origin-left">Admin</span>
+                        <span className="text-[10px] px-1.5 py-0.5 rounded bg-[#a8ff3e]/15 text-[#a8ff3e] font-semibold uppercase tracking-wider scale-90 origin-left">Admin</span>
                       )}
                       <span className="text-[10px] text-slate-500">{format(new Date(r.createdAt),'MMM d, yyyy · h:mm a')}</span>
                     </div>
@@ -178,7 +178,7 @@ export default function TicketDetail() {
                         <img 
                           src={r.screenshot} 
                           alt="Reply Screenshot" 
-                          className="max-w-full rounded-xl border border-white/10 hover:border-cyan-500/20 cursor-zoom-in hover:scale-[1.01] transition-all"
+                          className="max-w-full rounded-xl border border-white/10 hover:border-[#a8ff3e]/20 cursor-zoom-in hover:scale-[1.01] transition-all"
                           onClick={() => window.open(r.screenshot, '_blank')}
                         />
                       </div>
@@ -198,19 +198,19 @@ export default function TicketDetail() {
             <div className="card p-4 space-y-3">
               <div className="flex items-center justify-between">
                 <span className="text-slate-500 text-xs">{isAdmin ? 'Reply as Admin' : 'Reply'}</span>
-                <button onClick={suggest} disabled={aiLoading} className="flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs font-medium transition-all disabled:opacity-50" style={{background:'rgba(139,92,246,0.12)', border:'1px solid rgba(139,92,246,0.2)', color:'#c4b5fd'}}>
-                  {aiLoading?<div className="w-3 h-3 border-2 border-violet-400 border-t-transparent rounded-full animate-spin"/>:<Sparkles size={12}/>}AI Suggest Reply
+                <button onClick={suggest} disabled={aiLoading} className="flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs font-medium transition-all disabled:opacity-50" style={{background:'rgba(168,255,62,0.12)', border:'1px solid rgba(168,255,62,0.2)', color:'#a8ff3e'}}>
+                  {aiLoading?<div className="w-3 h-3 border-2 border-[#a8ff3e] border-t-transparent rounded-full animate-spin"/>:<Sparkles size={12}/>}AI Suggest Reply
                 </button>
               </div>
-
+ 
               {aiReply && !aiLoading && (
-                <div className="rounded-xl p-3 animate-fade-in" style={{background:'rgba(139,92,246,0.06)', border:'1px solid rgba(139,92,246,0.15)'}}>
+                <div className="rounded-xl p-3 animate-fade-in" style={{background:'rgba(168,255,62,0.06)', border:'1px solid rgba(168,255,62,0.15)'}}>
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-xs font-semibold flex items-center gap-1" style={{color:'#c4b5fd'}}><Sparkles size={11}/>AI Suggestion</span>
-                    <button onClick={copyAi} className="flex items-center gap-1 text-xs" style={{color:'#c4b5fd'}}>{copied?<Check size={11}/>:<Copy size={11}/>}{copied?'Copied':'Copy'}</button>
+                    <span className="text-xs font-semibold flex items-center gap-1" style={{color:'#a8ff3e'}}><Sparkles size={11}/>AI Suggestion</span>
+                    <button onClick={copyAi} className="flex items-center gap-1 text-xs" style={{color:'#a8ff3e'}}>{copied?<Check size={11}/>:<Copy size={11}/>}{copied?'Copied':'Copy'}</button>
                   </div>
                   <p className="text-slate-400 text-xs leading-relaxed">{aiReply}</p>
-                  <p className="text-violet-400/50 text-xs mt-2">↑ Auto-filled below. Edit if needed.</p>
+                  <p className="text-[#a8ff3e]/50 text-xs mt-2">↑ Auto-filled below. Edit if needed.</p>
                 </div>
               )}
 
@@ -248,7 +248,7 @@ export default function TicketDetail() {
                       <button 
                         type="button" 
                         onClick={() => fileInputRef.current?.click()} 
-                        className="p-2 rounded-xl bg-white/5 border border-white/8 hover:bg-white/10 hover:border-cyan-500/20 text-slate-400 hover:text-slate-200 transition-all"
+                        className="p-2 rounded-xl bg-white/5 border border-white/8 hover:bg-white/10 hover:border-[#a8ff3e]/20 text-slate-400 hover:text-slate-200 transition-all"
                         title="Upload screenshot"
                       >
                         <Image size={15} />

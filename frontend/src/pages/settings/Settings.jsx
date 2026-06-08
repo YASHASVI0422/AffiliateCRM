@@ -38,14 +38,14 @@ export default function Settings() {
       {/* Profile */}
       <div className="card p-6 relative overflow-hidden">
         {/* Gradient top accent */}
-        <div className="absolute top-0 left-0 right-0 h-[1px]" style={{background: 'linear-gradient(90deg, transparent, #06b6d4, #8b5cf6, transparent)'}} />
-        <h2 className="section-title mb-5 flex items-center gap-2"><User size={18} className="text-cyan-400"/>Profile Information</h2>
+        <div className="absolute top-0 left-0 right-0 h-[1px]" style={{background: 'linear-gradient(90deg, transparent, #a8ff3e, #10b981, transparent)'}} />
+        <h2 className="section-title mb-5 flex items-center gap-2"><User size={18} className="text-[#a8ff3e]"/>Profile Information</h2>
         <div className="flex items-center gap-4 mb-6">
           <Avatar name={profile.name} avatar={profile.avatar} size={64} className="rounded-2xl border border-white/10 shadow-lg" />
           <div>
             <div className="text-slate-100 font-semibold">{user?.name}</div>
             <div className="text-slate-500 text-sm">{user?.email}</div>
-            <div className="flex items-center gap-1.5 mt-1"><Shield size={12} className="text-cyan-400"/><span className="text-cyan-300 text-xs capitalize">{user?.role}</span></div>
+            <div className="flex items-center gap-1.5 mt-1"><Shield size={12} className="text-[#a8ff3e]"/><span className="text-[#a8ff3e] text-xs capitalize">{user?.role}</span></div>
           </div>
         </div>
 
@@ -66,7 +66,7 @@ export default function Settings() {
                   onClick={() => setProfile(p => ({ ...p, avatar: seed }))}
                   className={`relative p-0.5 rounded-xl transition-all duration-200 outline-none hover:scale-110 flex-shrink-0 ${
                     active 
-                      ? 'ring-2 ring-cyan-500 shadow-[0_0_12px_rgba(6,182,212,0.3)] bg-cyan-500/10' 
+                      ? 'ring-2 ring-[#a8ff3e] shadow-[0_0_12px_rgba(168,255,62,0.3)] bg-[#a8ff3e]/10' 
                       : 'opacity-60 hover:opacity-100 bg-white/5 border border-white/5'
                   }`}
                 >
@@ -107,11 +107,11 @@ export default function Settings() {
       {/* Affiliate Code */}
       {user?.affiliateCode && (
         <div className="card p-6 relative overflow-hidden">
-          <div className="absolute top-0 left-0 right-0 h-[1px]" style={{background: 'linear-gradient(90deg, transparent, #06b6d4, #8b5cf6, transparent)'}} />
-          <h2 className="section-title mb-3 flex items-center gap-2"><Shield size={18} className="text-cyan-400"/>Affiliate Details</h2>
-          <div className="flex items-center gap-3 p-4 rounded-xl" style={{background:'rgba(6,182,212,0.06)', border:'1px solid rgba(6,182,212,0.15)'}}>
+          <div className="absolute top-0 left-0 right-0 h-[1px]" style={{background: 'linear-gradient(90deg, transparent, #a8ff3e, #10b981, transparent)'}} />
+          <h2 className="section-title mb-3 flex items-center gap-2"><Shield size={18} className="text-[#a8ff3e]"/>Affiliate Details</h2>
+          <div className="flex items-center gap-3 p-4 rounded-xl" style={{background:'rgba(168,255,62,0.06)', border:'1px solid rgba(168,255,62,0.15)'}}>
             <div className="flex-1"><div className="text-slate-500 text-xs mb-1">Your Affiliate Code</div><div className="font-mono text-lg font-bold tracking-wider gradient-text">{user.affiliateCode}</div></div>
-            <button onClick={copy} className="w-9 h-9 flex items-center justify-center rounded-xl transition-all" style={{background:'rgba(6,182,212,0.1)', color:'#67e8f9'}}>{copied?<Check size={16}/>:<Copy size={16}/>}</button>
+            <button onClick={copy} className="w-9 h-9 flex items-center justify-center rounded-xl transition-all" style={{background:'rgba(168,255,62,0.1)', color:'#a8ff3e'}}>{copied?<Check size={16}/>:<Copy size={16}/>}</button>
           </div>
           <p className="text-slate-600 text-xs mt-2">Share this code to track your referrals</p>
         </div>
@@ -119,8 +119,8 @@ export default function Settings() {
 
       {/* Password */}
       <div className="card p-6 relative overflow-hidden">
-        <div className="absolute top-0 left-0 right-0 h-[1px]" style={{background: 'linear-gradient(90deg, transparent, #06b6d4, #8b5cf6, transparent)'}} />
-        <h2 className="section-title mb-5 flex items-center gap-2"><Lock size={18} className="text-cyan-400"/>Change Password</h2>
+        <div className="absolute top-0 left-0 right-0 h-[1px]" style={{background: 'linear-gradient(90deg, transparent, #a8ff3e, #10b981, transparent)'}} />
+        <h2 className="section-title mb-5 flex items-center gap-2"><Lock size={18} className="text-[#a8ff3e]"/>Change Password</h2>
         <div className="space-y-4">
           {[['current','Current Password'],['newPw','New Password'],['confirm','Confirm Password']].map(([k,l])=>(
             <div key={k}>
@@ -138,7 +138,7 @@ export default function Settings() {
 
       {/* Account Info */}
       <div className="card p-5 relative overflow-hidden">
-        <div className="absolute top-0 left-0 right-0 h-[1px]" style={{background: 'linear-gradient(90deg, transparent, #06b6d4, #8b5cf6, transparent)'}} />
+        <div className="absolute top-0 left-0 right-0 h-[1px]" style={{background: 'linear-gradient(90deg, transparent, #a8ff3e, #10b981, transparent)'}} />
         <h2 className="section-title mb-3">Account Details</h2>
         <div className="grid grid-cols-2 gap-4 text-sm">
           {[

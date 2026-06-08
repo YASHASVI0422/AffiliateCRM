@@ -90,10 +90,10 @@ export default function CustomSelect({ value, onChange, options, placeholder='Se
         left: dropPos.left,
         width: dropPos.width,
         zIndex: 9999,
-        background: 'rgb(8 12 20)',
-        border: '1px solid rgba(6,182,212,0.15)',
+        background: '#111c14',
+        border: '1px solid rgba(168,255,62,0.15)',
         borderRadius: '0.75rem',
-        boxShadow: '0 25px 50px rgba(0,0,0,0.6), 0 0 15px rgba(6,182,212,0.05)',
+        boxShadow: '0 25px 50px rgba(0,0,0,0.6), 0 0 15px rgba(168,255,62,0.05)',
         overflow: 'hidden',
         animation: 'slide-up 0.15s ease-out',
       }}
@@ -107,17 +107,17 @@ export default function CustomSelect({ value, onChange, options, placeholder='Se
               key={i}
               onClick={() => selectOption(opt.value)}
               className={`w-full flex items-center justify-between px-4 py-2.5 text-sm transition-colors outline-none ${
-                focused ? 'bg-cyan-500/10' : ''
+                focused ? 'bg-[#a8ff3e]/10' : ''
               } ${
                 opt.isPlaceholder
                   ? 'text-slate-500 hover:bg-white/5 hover:text-slate-300'
                   : sel
-                    ? 'text-cyan-300 bg-cyan-500/10'
+                    ? 'text-[#a8ff3e] bg-[#a8ff3e]/10'
                     : 'text-slate-300 hover:bg-white/5 hover:text-white'
               }`}
             >
               <span>{opt.label}</span>
-              {sel && <Check size={13} className="text-cyan-400" />}
+              {sel && <Check size={13} className="text-[#a8ff3e]" />}
             </button>
           );
         })}
@@ -132,7 +132,7 @@ export default function CustomSelect({ value, onChange, options, placeholder='Se
         type="button"
         onClick={toggleOpen}
         onKeyDown={handleKeyDown}
-        className="w-full flex items-center justify-between gap-2 bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm hover:border-cyan-500/30 focus:border-cyan-500/50 focus:shadow-[0_0_0_3px_rgba(6,182,212,0.1)] transition-all outline-none"
+        className="w-full flex items-center justify-between gap-2 bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm hover:border-[#a8ff3e]/30 focus:border-[#a8ff3e]/50 focus:shadow-[0_0_0_3px_rgba(168,255,62,0.1)] transition-all outline-none"
       >
         <span className={value ? 'text-slate-200' : 'text-slate-500'}>{getLabel(value) || placeholder}</span>
         <ChevronDown size={14} className={`text-slate-500 flex-shrink-0 transition-transform duration-200 ${open ? 'rotate-180' : ''}`} />

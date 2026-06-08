@@ -33,7 +33,7 @@ export default function Sidebar({ isOpen, onClose }) {
         className={`fixed md:static inset-y-0 left-0 z-50 flex flex-col h-screen border-r border-white/6 flex-shrink-0 transition-all duration-300 ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
         } md:translate-x-0 ${collapsed ? 'md:w-16' : 'md:w-60'} w-60`}
-        style={{ background: 'rgb(6 9 15)' }}
+        style={{ background: '#0a1a0f' }}
       >
         {/* Logo */}
         <div className="flex items-center gap-2.5 px-4 py-5 border-b border-white/6">
@@ -49,9 +49,9 @@ export default function Sidebar({ isOpen, onClose }) {
         {/* Role badge */}
         {(!collapsed || isOpen) && (
           <div className="px-4 pt-4 animate-fade-in">
-            <div className="flex items-center gap-2 px-3 py-2 rounded-xl" style={{ background: 'rgba(6,182,212,0.08)', border: '1px solid rgba(6,182,212,0.15)' }}>
-              <Shield size={13} className="text-cyan-400" />
-              <span className="text-cyan-300 text-xs font-medium capitalize">{user?.role}</span>
+            <div className="flex items-center gap-2 px-3 py-2 rounded-xl" style={{ background: 'rgba(168,255,62,0.08)', border: '1px solid rgba(168,255,62,0.15)' }}>
+              <Shield size={13} className="text-[#a8ff3e]" />
+              <span className="text-[#a8ff3e] text-xs font-medium capitalize">{user?.role}</span>
             </div>
           </div>
         )}
@@ -76,7 +76,7 @@ export default function Sidebar({ isOpen, onClose }) {
         <button
           onClick={() => setCollapsed(!collapsed)}
           className="hidden md:flex absolute -right-3 top-20 w-6 h-6 border border-white/10 rounded-full items-center justify-center text-slate-600 hover:text-slate-300 transition-all z-10"
-          style={{ background: 'rgb(6 9 15)' }}
+          style={{ background: '#0a1a0f' }}
         >
           {collapsed ? <ChevronRight size={12} /> : <ChevronLeft size={12} />}
         </button>

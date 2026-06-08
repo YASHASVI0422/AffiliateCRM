@@ -15,10 +15,11 @@ import Settings     from './pages/settings/Settings';
 import Users        from './pages/users/Users';
 import NotFound     from './pages/NotFound';
 import AuditLog     from './pages/audit/AuditLog';
+import Landing      from './pages/Landing';
 
 const Protected = ({ children, adminOnly=false }) => {
   const { user, loading } = useAuth();
-  if (loading) return <div className="min-h-screen flex items-center justify-center" style={{background:'#06090f'}}><div className="w-10 h-10 border-2 border-cyan-500 border-t-transparent rounded-full animate-spin"/></div>;
+  if (loading) return <div className="min-h-screen flex items-center justify-center" style={{background:'#0a1a0f'}}><div className="w-10 h-10 border-2 border-[#a8ff3e] border-t-transparent rounded-full animate-spin"/></div>;
   if (!user) return <Navigate to="/login" replace />;
   if (adminOnly && user.role!=='admin') return <Navigate to="/dashboard" replace />;
   return children;
@@ -27,7 +28,7 @@ const Public = ({ children }) => { const {user,loading}=useAuth(); if(loading) r
 
 const AppRoutes = () => (
   <Routes>
-    <Route path="/"         element={<Navigate to="/dashboard" replace />} />
+    <Route path="/"         element={<Landing />} />
     <Route path="/login"    element={<Public><Login /></Public>} />
     <Route path="/register" element={<Public><Register /></Public>} />
     <Route path="/" element={<Protected><ErrorBoundary><Layout /></ErrorBoundary></Protected>}>
@@ -56,19 +57,19 @@ export default function App() {
             position="top-right"
             toastOptions={{
               style: {
-                background: '#0a0e1a',
+                background: '#111c14',
                 color: '#e2e8f0',
-                border: '1px solid rgba(6,182,212,0.15)',
+                border: '1px solid rgba(168,255,62,0.15)',
                 borderRadius: '12px',
                 fontFamily: 'Sora, Inter, sans-serif',
                 fontSize: '14px',
-                boxShadow: '0 10px 40px rgba(0,0,0,0.4), 0 0 15px rgba(6,182,212,0.05)',
+                boxShadow: '0 10px 40px rgba(0,0,0,0.4), 0 0 15px rgba(168,255,62,0.05)',
               },
               success: {
-                iconTheme: { primary: '#06b6d4', secondary: '#0a0e1a' },
+                iconTheme: { primary: '#a8ff3e', secondary: '#111c14' },
               },
               error: {
-                iconTheme: { primary: '#f87171', secondary: '#0a0e1a' },
+                iconTheme: { primary: '#f87171', secondary: '#111c14' },
               },
               duration: 3000,
             }}

@@ -6,8 +6,8 @@ export default function NotFound() {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-4 text-center" style={{ backgroundColor: 'rgb(6 9 15)' }}>
-      <h1 className="text-8xl font-black text-cyan-500" style={{ fontFamily: 'Sora, sans-serif' }}>
+    <div className="min-h-screen flex flex-col items-center justify-center p-4 text-center" style={{ backgroundColor: '#0a1a0f' }}>
+      <h1 className="text-8xl font-black text-[#a8ff3e]" style={{ fontFamily: 'Sora, sans-serif' }}>
         404
       </h1>
       <h2 className="text-slate-100 font-semibold text-xl mt-4" style={{ fontFamily: 'Sora, sans-serif' }}>
@@ -19,7 +19,7 @@ export default function NotFound() {
       <button
         onClick={() => navigate('/dashboard')}
         className="btn-primary mt-6 flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium text-sm transition-all"
-        style={{ background: 'linear-gradient(135deg, #06b6d4, #8b5cf6)', border: 'none', color: '#fff' }}
+        style={{ background: 'linear-gradient(135deg, #a8ff3e, #10b981)', border: 'none', color: '#000000' }}
       >
         <ArrowLeft size={16} />
         Back to Dashboard

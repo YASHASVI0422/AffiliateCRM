@@ -46,9 +46,9 @@ export default function UsersPage() {
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         {[['Total',pg.total,Users,'cyan'],['Admins',admins,Shield,'amber'],['Affiliates',affs,UserCheck,'emerald']].map(([l,v,Icon,c])=>{
           const colors = {
-            cyan:   { text:'text-cyan-400',    bg:'rgba(6,182,212,0.1)' },
-            amber:  { text:'text-amber-400',   bg:'rgba(245,158,11,0.1)' },
-            emerald:{ text:'text-emerald-400',  bg:'rgba(16,185,129,0.1)' },
+            cyan:   { text:'text-[#a8ff3e]',    bg:'rgba(168,255,62,0.1)' },
+            amber:  { text:'text-[#8ee62c]',   bg:'rgba(142,230,44,0.1)' },
+            emerald:{ text:'text-[#10b981]',  bg:'rgba(16,185,129,0.1)' },
           }[c];
           return (
             <div key={l} className="card p-4 flex items-center gap-3">
@@ -78,11 +78,11 @@ export default function UsersPage() {
                     <div><div className="text-slate-200 text-sm font-medium">{u.name}</div><div className="text-slate-500 text-xs">{u.email}</div></div>
                   </div>
                 </td>
-                <td className="px-4 py-3"><span className="font-mono text-xs text-cyan-400">{u.affiliateCode||'—'}</span></td>
+                <td className="px-4 py-3"><span className="font-mono text-xs text-[#a8ff3e]">{u.affiliateCode||'—'}</span></td>
                 <td className="px-4 py-3">
-                  <select className="text-xs text-slate-300 cursor-pointer focus:outline-none rounded-lg px-2 py-1 border border-white/8 hover:border-cyan-500/20 transition-all" style={{background:'transparent'}} value={u.role} onChange={e=>updateRole(u._id,e.target.value)}>
-                    <option value="affiliate" style={{background:'#060910'}}>Affiliate</option>
-                    <option value="admin"     style={{background:'#060910'}}>Admin</option>
+                  <select className="text-xs text-slate-300 cursor-pointer focus:outline-none rounded-lg px-2 py-1 border border-white/8 hover:border-[#a8ff3e]/20 transition-all" style={{background:'transparent'}} value={u.role} onChange={e=>updateRole(u._id,e.target.value)}>
+                    <option value="affiliate" style={{background:'#111c14'}}>Affiliate</option>
+                    <option value="admin"     style={{background:'#111c14'}}>Admin</option>
                   </select>
                 </td>
                 <td className="px-4 py-3"><span className={`badge ${u.isActive?'bg-emerald-500/15 text-emerald-300 border border-emerald-500/20':'bg-red-500/15 text-red-300 border border-red-500/20'}`}><span className={`w-1.5 h-1.5 rounded-full ${u.isActive?'bg-emerald-400':'bg-red-400'}`}/>{u.isActive?'Active':'Inactive'}</span></td>

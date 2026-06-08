@@ -8,14 +8,14 @@ import Avatar from '../../components/ui/Avatar';
 import toast from 'react-hot-toast';
 import { useAuth } from '../../context/AuthContext';
 
-const COLORS = ['#06b6d4','#10b981','#f59e0b','#8b5cf6','#f87171','#a855f7'];
-const S_COLORS = { 'New Lead':'#64748b','Contacted':'#0ea5e9','Interested':'#f59e0b','Joined Community':'#8b5cf6','Converted':'#10b981' };
-const T_COLORS = { Open:'#f87171','In Progress':'#f59e0b','Resolved':'#10b981','Closed':'#64748b' };
+const COLORS = ['#a8ff3e','#10b981','#059669','#3f6212','#111c14','#8ee62c'];
+const S_COLORS = { 'New Lead':'#1b3a24','Contacted':'#2e5b37','Interested':'#10b981','Joined Community':'#8ee62c','Converted':'#a8ff3e' };
+const T_COLORS = { Open:'#ef4444','In Progress':'#a8ff3e','Resolved':'#10b981','Closed':'#3f6212' };
 
 const TT = ({ active, payload, label }) => {
   if (!active||!payload?.length) return null;
   return (
-    <div className="shadow-xl p-3 text-sm" style={{background:'rgb(10 14 24)',border:'1px solid rgba(255,255,255,0.08)',borderRadius:12}}>
+    <div className="shadow-xl p-3 text-sm font-sans" style={{background:'#111c14',border:'1px solid rgba(255,255,255,0.08)',borderRadius:12}}>
       <div className="text-slate-500 mb-2 text-xs">{label}</div>
       {payload.map((p,i)=><div key={i} className="flex items-center gap-2"><div className="w-2 h-2 rounded-full" style={{background:p.color}}/><span className="text-slate-400">{p.name}:</span><span className="text-slate-200 font-medium">{typeof p.value==='number'?Math.round(p.value*10)/10:p.value}</span></div>)}
     </div>
@@ -75,14 +75,14 @@ export default function Analytics() {
             <ResponsiveContainer width="100%" height={220}>
               <AreaChart data={lot}>
                 <defs>
-                  <linearGradient id="al" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="#06b6d4" stopOpacity={0.25}/><stop offset="95%" stopColor="#06b6d4" stopOpacity={0}/></linearGradient>
-                  <linearGradient id="ac" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="#10b981" stopOpacity={0.25}/><stop offset="95%" stopColor="#10b981" stopOpacity={0}/></linearGradient>
+                  <linearGradient id="al" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="#a8ff3e" stopOpacity={0.2}/><stop offset="95%" stopColor="#a8ff3e" stopOpacity={0}/></linearGradient>
+                  <linearGradient id="ac" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="#10b981" stopOpacity={0.2}/><stop offset="95%" stopColor="#10b981" stopOpacity={0}/></linearGradient>
                 </defs>
                 <XAxis dataKey="date" tickFormatter={d=>d.slice(5)}/>
                 <YAxis allowDecimals={false}/>
                 <Tooltip content={<TT/>}/>
                 <Legend wrapperStyle={{color:'rgba(148,163,184,0.6)',fontSize:12}}/>
-                <Area type="monotone" dataKey="leads"     stroke="#06b6d4" fill="url(#al)" strokeWidth={2} name="New Leads"/>
+                <Area type="monotone" dataKey="leads"     stroke="#a8ff3e" fill="url(#al)" strokeWidth={2} name="New Leads"/>
                 <Area type="monotone" dataKey="converted" stroke="#10b981" fill="url(#ac)" strokeWidth={2} name="Converted"/>
               </AreaChart>
             </ResponsiveContainer>
@@ -136,15 +136,15 @@ export default function Analytics() {
               {aff.slice(0,5).map((a,i)=>{
                 const isSelf = a.email === user?.email;
                 return (
-                  <div key={i} className={`flex items-center gap-3 p-2 rounded-xl transition-all ${isSelf ? 'bg-cyan-500/10 border border-cyan-500/20 shadow-[0_0_12px_rgba(6,182,212,0.1)]' : 'border border-transparent'}`}>
+                  <div key={i} className={`flex items-center gap-3 p-2 rounded-xl transition-all ${isSelf ? 'bg-[#a8ff3e]/10 border border-[#a8ff3e]/20 shadow-[0_0_12px_rgba(168,255,62,0.1)]' : 'border border-transparent'}`}>
                     <Avatar name={a.name} avatar={a.avatar} size={28} className="rounded-lg" />
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between mb-1">
-                        <span className="text-slate-200 text-sm font-medium truncate">{a.name} {isSelf && <span className="text-[10px] text-cyan-400 font-semibold ml-1">(You)</span>}</span>
+                        <span className="text-slate-200 text-sm font-medium truncate">{a.name} {isSelf && <span className="text-[10px] text-[#a8ff3e] font-semibold ml-1">(You)</span>}</span>
                         <span className="text-emerald-400 text-xs font-medium ml-2">{a.converted} conv.</span>
                       </div>
                       <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
-                        <div className="h-full rounded-full" style={{width:`${Math.min(a.conversionRate||0,100)}%`, background:'linear-gradient(90deg, #06b6d4, #10b981)'}}/>
+                        <div className="h-full rounded-full" style={{width:`${Math.min(a.conversionRate||0,100)}%`, background:'linear-gradient(90deg, #10b981, #a8ff3e)'}}/>
                       </div>
                       <div className="text-slate-600 text-xs mt-0.5">{a.totalLeads} leads · {(a.conversionRate||0).toFixed(1)}% rate</div>
                     </div>
@@ -165,7 +165,7 @@ export default function Analytics() {
               <YAxis allowDecimals={false}/>
               <Tooltip content={<TT/>}/>
               <Bar dataKey="count" name="Tickets" radius={[6,6,0,0]}>
-                {tt.byPriority.map((e,i)=><Cell key={i} fill={e._id==='High'?'#f87171':e._id==='Medium'?'#f59e0b':'#64748b'}/>)}
+                {tt.byPriority.map((e,i)=><Cell key={i} fill={e._id==='High'?'#ef4444':e._id==='Medium'?'#a8ff3e':'#1b3a24'}/>)}
               </Bar>
             </BarChart>
           </ResponsiveContainer>

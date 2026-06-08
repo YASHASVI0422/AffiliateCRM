@@ -10,19 +10,19 @@ import { StatCard, SkeletonLoader } from '../../components/ui';
 import Avatar from '../../components/ui/Avatar';
 
 const actMeta = {
-  lead_created:   { color:'text-cyan-400',    bg:'bg-cyan-500/10' },
+  lead_created:   { color:'text-[#a8ff3e]',    bg:'bg-[#a8ff3e]/10' },
   lead_updated:   { color:'text-amber-400',   bg:'bg-amber-500/10' },
   lead_converted: { color:'text-emerald-400', bg:'bg-emerald-500/10' },
   ticket_created: { color:'text-red-400',     bg:'bg-red-500/10' },
   ticket_updated: { color:'text-amber-400',   bg:'bg-amber-500/10' },
-  ticket_replied: { color:'text-violet-400',  bg:'bg-violet-500/10' },
-  user_registered:{ color:'text-sky-400',     bg:'bg-sky-500/10' },
+  ticket_replied: { color:'text-[#8ee62c]',  bg:'bg-[#8ee62c]/10' },
+  user_registered:{ color:'text-[#a8ff3e]',     bg:'bg-[#a8ff3e]/10' },
   user_login:     { color:'text-slate-500',   bg:'bg-white/5' },
 };
 
 const moodCfg = {
   positive:{ border:'border-emerald-500/20', bg:'bg-emerald-500/5', badge:'bg-emerald-500/15 text-emerald-300 border-emerald-500/25' },
-  neutral: { border:'border-cyan-500/20',    bg:'bg-cyan-500/5',    badge:'bg-cyan-500/15 text-cyan-300 border-cyan-500/25' },
+  neutral: { border:'border-[#a8ff3e]/20',    bg:'bg-[#a8ff3e]/5',    badge:'bg-[#a8ff3e]/15 text-[#a8ff3e] border-[#a8ff3e]/25' },
   warning: { border:'border-amber-500/20',   bg:'bg-amber-500/5',   badge:'bg-amber-500/15 text-amber-300 border-amber-500/25' },
 };
 
@@ -120,7 +120,7 @@ export default function Dashboard() {
   const chartTooltip = ({ active, payload, label }) => {
     if (!active || !payload?.length) return null;
     return (
-      <div className="shadow-xl p-3 text-sm" style={{ background: 'rgb(10 14 24)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 12 }}>
+      <div className="shadow-xl p-3 text-sm" style={{ background: '#111c14', border: '1px solid rgba(168,255,62,0.15)', borderRadius: 12 }}>
         <div className="text-slate-500 mb-2 text-xs">{label}</div>
         {payload.map((p, i) => (
           <div key={i} className="flex items-center gap-2">
@@ -155,7 +155,7 @@ export default function Dashboard() {
         {user?.affiliateCode && (
           <div className="hidden md:block card px-4 py-2.5 text-right">
             <div className="text-slate-500 text-xs">Affiliate code</div>
-            <div className="text-cyan-400 font-mono font-semibold">{user.affiliateCode}</div>
+            <div className="text-[#a8ff3e] font-mono font-semibold">{user.affiliateCode}</div>
           </div>
         )}
       </div>
@@ -177,7 +177,7 @@ export default function Dashboard() {
                 </div>
                 <button
                   onClick={() => navigate('/leads')}
-                  className="text-cyan-400 hover:text-cyan-300 transition-colors font-medium"
+                  className="text-[#a8ff3e] hover:text-[#a8ff3e]/80 transition-colors font-medium"
                 >
                   View
                 </button>
@@ -199,28 +199,28 @@ export default function Dashboard() {
       <div className={`card p-5 border transition-all duration-500 ${mood ? `${mood.border} ${mood.bg}` : 'border-white/6'}`}>
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: 'linear-gradient(135deg, rgba(6,182,212,0.15), rgba(139,92,246,0.1))' }}>
-              <Sparkles size={16} className="text-cyan-400" />
+            <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: 'linear-gradient(135deg, rgba(168,255,62,0.15), rgba(16,185,129,0.1))' }}>
+              <Sparkles size={16} className="text-[#a8ff3e]" />
             </div>
             <div>
               <h3 className="text-slate-200 font-semibold text-sm" style={{ fontFamily: 'Sora,sans-serif' }}>AI Business Insight</h3>
               <p className="text-slate-600 text-xs">Powered by Gemini AI</p>
             </div>
           </div>
-          <button onClick={fetchAI} disabled={isAiLoading || loading} className="flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs font-medium transition-all disabled:opacity-50" style={{ background: 'rgba(6,182,212,0.12)', border: '1px solid rgba(6,182,212,0.2)', color: '#67e8f9' }}>
-            {isAiLoading ? <div className="w-3 h-3 border-2 border-cyan-400 border-t-transparent rounded-full animate-spin" /> : <RefreshCw size={12} />}
+          <button onClick={fetchAI} disabled={isAiLoading || loading} className="flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs font-medium transition-all disabled:opacity-50" style={{ background: 'rgba(168,255,62,0.12)', border: '1px solid rgba(168,255,62,0.2)', color: '#a8ff3e' }}>
+            {isAiLoading ? <div className="w-3 h-3 border-2 border-[#a8ff3e] border-t-transparent rounded-full animate-spin" /> : <RefreshCw size={12} />}
             {aiInsight ? 'Refresh' : 'Generate Insight'}
           </button>
         </div>
         {!aiInsight && !isAiLoading && !hasAiError && (
           <div className="flex flex-col items-center justify-center py-6 text-center">
-            <Sparkles size={28} className="text-cyan-400/30 mb-2" />
+            <Sparkles size={28} className="text-[#a8ff3e]/30 mb-2" />
             <p className="text-slate-500 text-sm">Click "Generate Insight" to get an AI-powered analysis</p>
           </div>
         )}
         {isAiLoading && (
           <div className="flex items-center justify-center gap-3 py-6">
-            <div className="w-5 h-5 border-2 border-cyan-400 border-t-transparent rounded-full animate-spin" />
+            <div className="w-5 h-5 border-2 border-[#a8ff3e] border-t-transparent rounded-full animate-spin" />
             <p className="text-slate-500 text-sm">Gemini is analysing your data...</p>
           </div>
         )}
@@ -237,15 +237,15 @@ export default function Dashboard() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
               {aiInsight.highlights?.map((h, i) => (
                 <div key={i} className="flex items-start gap-2 p-3 bg-white/5 rounded-xl">
-                  <span className="text-cyan-400 mt-0.5">•</span>
+                  <span className="text-[#a8ff3e] mt-0.5">•</span>
                   <span className="text-slate-400 text-xs">{h}</span>
                 </div>
               ))}
             </div>
-            <div className="flex items-start gap-3 p-3 rounded-xl" style={{ background: 'rgba(6,182,212,0.08)', border: '1px solid rgba(6,182,212,0.15)' }}>
-              <Zap size={15} className="text-cyan-400 flex-shrink-0 mt-0.5" />
+            <div className="flex items-start gap-3 p-3 rounded-xl" style={{ background: 'rgba(168,255,62,0.08)', border: '1px solid rgba(168,255,62,0.15)' }}>
+              <Zap size={15} className="text-[#a8ff3e] flex-shrink-0 mt-0.5" />
               <div>
-                <span className="text-cyan-300 text-xs font-semibold uppercase tracking-wider">Recommended Action</span>
+                <span className="text-[#a8ff3e] text-xs font-semibold uppercase tracking-wider">Recommended Action</span>
                 <p className="text-slate-300 text-sm mt-0.5">{aiInsight.action}</p>
               </div>
             </div>
@@ -261,7 +261,7 @@ export default function Dashboard() {
                 <h3 className="section-title">Lead Activity</h3>
                 <p className="text-slate-500 text-xs mt-0.5">Last 14 days</p>
               </div>
-              <button onClick={() => navigate('/analytics')} className="flex items-center gap-1 text-cyan-400 hover:text-cyan-300 text-xs font-medium transition-colors">
+              <button onClick={() => navigate('/analytics')} className="flex items-center gap-1 text-[#a8ff3e] hover:text-[#a8ff3e]/80 text-xs font-medium transition-colors">
                 View all <ArrowUpRight size={12} />
               </button>
             </div>
@@ -272,8 +272,8 @@ export default function Dashboard() {
                 <AreaChart data={chart}>
                   <defs>
                     <linearGradient id="gl" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#06b6d4" stopOpacity={0.2} />
-                      <stop offset="95%" stopColor="#06b6d4" stopOpacity={0} />
+                      <stop offset="5%" stopColor="#a8ff3e" stopOpacity={0.2} />
+                      <stop offset="95%" stopColor="#a8ff3e" stopOpacity={0} />
                     </linearGradient>
                     <linearGradient id="gc" x1="0" y1="0" x2="0" y2="1">
                       <stop offset="5%" stopColor="#10b981" stopOpacity={0.2} />
@@ -283,7 +283,7 @@ export default function Dashboard() {
                   <XAxis dataKey="date" tickFormatter={d => d.slice(5)} />
                   <YAxis allowDecimals={false} />
                   <Tooltip content={chartTooltip} />
-                  <Area type="monotone" dataKey="leads" stroke="#06b6d4" fill="url(#gl)" strokeWidth={2} name="Leads" />
+                  <Area type="monotone" dataKey="leads" stroke="#a8ff3e" fill="url(#gl)" strokeWidth={2} name="Leads" />
                   <Area type="monotone" dataKey="converted" stroke="#10b981" fill="url(#gc)" strokeWidth={2} name="Converted" />
                 </AreaChart>
               </ResponsiveContainer>
@@ -308,7 +308,7 @@ export default function Dashboard() {
                       <span className="text-slate-200 text-xs font-medium">{count}</span>
                     </div>
                     <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
-                      <div className="h-full rounded-full" style={{ width: `${pct}%`, background: 'linear-gradient(90deg, #06b6d4, #8b5cf6)' }} />
+                      <div className="h-full rounded-full" style={{ width: `${pct}%`, background: 'linear-gradient(90deg, #10b981, #a8ff3e)' }} />
                     </div>
                   </div>
                 );
