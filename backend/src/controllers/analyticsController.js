@@ -36,19 +36,43 @@ const getOverview = async (req, res, next) => {
 const getLeadsOverTime = async (req, res, next) => {
   try {
     const days = +req.query.days || 30;
-    const start = new Date(); start.setDate(start.getDate()-days);
+    const start = new Date(); 
+    start.setDate(start.getDate() - days);
+    start.setHours(0, 0, 0, 0);
+
     const q = req.user.role === 'affiliate' 
       ? { $or: [{ assignedAffiliate: req.user._id }, { createdBy: req.user._id }] }
       : {};
 
-    const data = await Lead.aggregate([
+    const dbData = await Lead.aggregate([
       { $match: { ...q, createdAt: { $gte: start } } },
       { $group: { _id: { y: { $year: '$createdAt' }, m: { $month: '$createdAt' }, d: { $dayOfMonth: '$createdAt' } }, count: { $sum: 1 }, converted: { $sum: { $cond: [{ $eq: ['$status', 'Converted'] }, 1, 0] } } } },
       { $sort: { '_id.y': 1, '_id.m': 1, '_id.d': 1 } },
     ]);
-    res.json({ success: true, data: data.map(d => ({ date: `${d._id.y}-${String(d._id.m).padStart(2, '0')}-${String(d._id.d).padStart(2, '0')}`, leads: d.count, converted: d.converted })) });
+
+    const dataMap = new Map();
+    dbData.forEach(d => {
+      const key = `${d._id.y}-${String(d._id.m).padStart(2, '0')}-${String(d._id.d).padStart(2, '0')}`;
+      dataMap.set(key, { leads: d.count, converted: d.converted });
+    });
+
+    const result = [];
+    for (let i = 0; i <= days; i++) {
+      const current = new Date(start);
+      current.setDate(start.getDate() + i);
+      const key = `${current.getFullYear()}-${String(current.getMonth() + 1).padStart(2, '0')}-${String(current.getDate()).padStart(2, '0')}`;
+      
+      if (dataMap.has(key)) {
+        result.push({ date: key, ...dataMap.get(key) });
+      } else {
+        result.push({ date: key, leads: 0, converted: 0 });
+      }
+    }
+
+    res.json({ success: true, data: result });
   } catch(e) { next(e); }
 };
+
 
 const getPipelineData = async (req, res, next) => {
   try {
