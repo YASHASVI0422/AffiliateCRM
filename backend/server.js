@@ -12,6 +12,11 @@ console.log("NODE_ENV:", process.env.NODE_ENV);
 console.log("FRONTEND_URL:", process.env.FRONTEND_URL);
 
 connectDB();
+const addDemoData = require('./src/utils/addDemoData');
+
+addDemoData()
+  .then(() => console.log('✅ Demo data added'))
+  .catch(err => console.error('❌ Demo data error:', err));
 
 const app = express();
 
