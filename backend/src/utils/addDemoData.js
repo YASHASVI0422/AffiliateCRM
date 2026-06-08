@@ -70,10 +70,8 @@ const run = async () => {
   console.log('admin@affiliatecrm.com / admin123');
   console.log('\nAffiliate Login');
   console.log('sarah@affiliatecrm.com / affiliate123');
-  process.exit(0);
 };
 
 run().catch(err => {
   console.error(err);
-  process.exit(1);
 });
