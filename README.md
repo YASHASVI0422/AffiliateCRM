@@ -13,10 +13,16 @@
   <img src="https://img.shields.io/badge/Jest-C21325?style=for-the-badge&logo=jest&logoColor=white" alt="Jest" />
 </p>
 
----
-
 ### 🌐 Overview
 **AffiliateCRM** is an intelligent, high-performance affiliate management platform unifying a modern MERN stack with Google Gemini AI analysis and real-time WebSockets synchronization. Designed with rich glassmorphic aesthetics, advanced security protocols, and real-time chat, it delivers a premium and robust enterprise experience.
+
+**🔗 Live Demo**: [https://affiliatecrm.netlify.app/](https://affiliatecrm.netlify.app/)
+
+<p align="center">
+  <a href="https://affiliatecrm.netlify.app/">
+    <img src="https://img.shields.io/badge/Live_Demo-netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white" alt="Live Demo" />
+  </a>
+</p>
 
 ---
 
