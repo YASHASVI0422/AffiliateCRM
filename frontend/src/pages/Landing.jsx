@@ -19,13 +19,16 @@ import {
   Check,
   Code,
   Layers,
-  Sparkle
+  Sparkle,
+  X,
+  Key
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import logo from '../assets/logo.png';
 
 export default function Landing() {
   const { user } = useAuth();
+  const [showAuthChoice, setShowAuthChoice] = useState(false);
   
   // Interactive Sandbox state
   const [selectedDemoLead, setSelectedDemoLead] = useState(0);
@@ -196,9 +199,12 @@ export default function Landing() {
                 <Link to="/login" className="text-slate-400 hover:text-white text-xs font-bold transition-all px-3 py-2">
                   Sign In
                 </Link>
-                <Link to="/register" className="px-5 py-2.5 rounded-full text-xs font-bold bg-[#a8ff3e] text-[#0a1a0f] hover:bg-[#8ee62c] transition-all shadow-[0_0_20px_rgba(168,255,62,0.25)] active:scale-[0.97]">
+                <button 
+                  onClick={() => setShowAuthChoice(true)}
+                  className="px-5 py-2.5 rounded-full text-xs font-bold bg-[#a8ff3e] text-[#0a1a0f] hover:bg-[#8ee62c] transition-all shadow-[0_0_20px_rgba(168,255,62,0.25)] active:scale-[0.97]"
+                >
                   Start Free
-                </Link>
+                </button>
               </>
             )}
           </div>
@@ -226,10 +232,13 @@ export default function Landing() {
 
         {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row justify-center items-center gap-4 animate-slide-up mb-20">
-          <Link to="/register" className="w-full sm:w-auto px-8 py-4 rounded-full text-sm font-bold bg-[#a8ff3e] text-[#0a1a0f] hover:bg-[#8ee62c] hover:shadow-[0_0_30px_rgba(168,255,62,0.35)] transition-all flex items-center justify-center gap-2 active:scale-[0.98]">
+          <button 
+            onClick={() => setShowAuthChoice(true)}
+            className="w-full sm:w-auto px-8 py-4 rounded-full text-sm font-bold bg-[#a8ff3e] text-[#0a1a0f] hover:bg-[#8ee62c] hover:shadow-[0_0_30px_rgba(168,255,62,0.35)] transition-all flex items-center justify-center gap-2 active:scale-[0.98]"
+          >
             <span>Start Free Trial</span>
             <ArrowRight size={16} />
-          </Link>
+          </button>
           <a href="#demo" className="w-full sm:w-auto px-8 py-4 rounded-full text-sm font-bold bg-white/[0.03] hover:bg-white/[0.06] text-slate-300 border border-white/[0.08] hover:border-white/[0.15] transition-all flex items-center justify-center gap-2 active:scale-[0.98]">
             <Play size={14} className="fill-slate-300 text-slate-300" />
             <span>Watch AI Sandbox</span>
@@ -640,9 +649,12 @@ export default function Landing() {
                   ))}
                 </div>
               </div>
-              <Link to="/register" className="w-full py-3 rounded-xl text-xs font-bold text-center mt-8 block border border-white/10 text-slate-350 bg-white/[0.01] hover:bg-white/[0.04] transition-all">
+              <button 
+                onClick={() => setShowAuthChoice(true)}
+                className="w-full py-3 rounded-xl text-xs font-bold text-center mt-8 block border border-white/10 text-slate-350 bg-white/[0.01] hover:bg-white/[0.04] transition-all"
+              >
                 Get Started
-              </Link>
+              </button>
             </div>
 
             {/* Tier 2: Recommended */}
@@ -673,9 +685,12 @@ export default function Landing() {
                   ))}
                 </div>
               </div>
-              <Link to="/register" className="w-full py-3 rounded-xl text-xs font-bold text-center mt-8 block bg-[#a8ff3e] text-[#0a1a0f] hover:bg-[#8ee62c] hover:shadow-[0_0_20px_rgba(168,255,62,0.25)] transition-all">
+              <button 
+                onClick={() => setShowAuthChoice(true)}
+                className="w-full py-3 rounded-xl text-xs font-bold text-center mt-8 block bg-[#a8ff3e] text-[#0a1a0f] hover:bg-[#8ee62c] hover:shadow-[0_0_20px_rgba(168,255,62,0.25)] transition-all"
+              >
                 Try Growth Free
-              </Link>
+              </button>
             </div>
 
             {/* Tier 3 */}
@@ -702,9 +717,12 @@ export default function Landing() {
                   ))}
                 </div>
               </div>
-              <Link to="/register" className="w-full py-3 rounded-xl text-xs font-bold text-center mt-8 block border border-white/10 text-slate-350 bg-white/[0.01] hover:bg-white/[0.04] transition-all">
+              <button 
+                onClick={() => setShowAuthChoice(true)}
+                className="w-full py-3 rounded-xl text-xs font-bold text-center mt-8 block border border-white/10 text-slate-350 bg-white/[0.01] hover:bg-white/[0.04] transition-all"
+              >
                 Contact Sales
-              </Link>
+              </button>
             </div>
           </div>
         </div>
@@ -776,9 +794,12 @@ export default function Landing() {
               Join thousands of marketers leveraging predictive artificial intelligence to automate conversions and support tickets.
             </p>
             <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link to="/register" className="w-full sm:w-auto px-8 py-3.5 rounded-full text-xs font-bold bg-[#a8ff3e] text-[#0a1a0f] hover:bg-[#8ee62c] hover:shadow-[0_0_20px_rgba(168,255,62,0.25)] transition-all duration-300">
+              <button 
+                onClick={() => setShowAuthChoice(true)}
+                className="w-full sm:w-auto px-8 py-3.5 rounded-full text-xs font-bold bg-[#a8ff3e] text-[#0a1a0f] hover:bg-[#8ee62c] hover:shadow-[0_0_20px_rgba(168,255,62,0.25)] transition-all duration-300"
+              >
                 Get Started for Free
-              </Link>
+              </button>
               <a href="#features" className="w-full sm:w-auto px-8 py-3.5 rounded-full text-xs font-bold bg-white/[0.02] border border-white/[0.08] hover:border-white/[0.15] text-slate-300 hover:bg-white/[0.04] transition-all">
                 Learn More
               </a>
@@ -811,6 +832,121 @@ export default function Landing() {
           </div>
         </div>
       </footer>
+
+      {/* Futuristic Authentication gateway modal */}
+      {showAuthChoice && (
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4">
+          <style>{`
+            @keyframes scanline {
+              0% { top: 0%; opacity: 0; }
+              5% { opacity: 0.8; }
+              95% { opacity: 0.8; }
+              100% { top: 100%; opacity: 0; }
+            }
+            .animate-scanline {
+              animation: scanline 3s linear infinite;
+            }
+          `}</style>
+
+          {/* Blur backdrop overlay */}
+          <div 
+            className="absolute inset-0 bg-black/85 backdrop-blur-xl transition-all duration-300"
+            onClick={() => setShowAuthChoice(false)}
+          />
+
+          {/* Scanning laser line sweeping down */}
+          <div className="absolute left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#a8ff3e]/40 to-transparent pointer-events-none animate-scanline" />
+
+          {/* Modal Content container */}
+          <div className="relative w-full max-w-2xl bg-[#0e1c12]/90 border border-[#a8ff3e]/20 rounded-[2.5rem] p-8 md:p-12 shadow-[0_30px_70px_rgba(0,0,0,0.8),0_0_50px_rgba(168,255,62,0.05)] overflow-hidden animate-slide-up flex flex-col items-center">
+            {/* Soft background glowing ambient lights */}
+            <div className="absolute -top-12 -left-12 w-48 h-48 bg-[#a8ff3e]/10 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute -bottom-12 -right-12 w-48 h-48 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
+
+            {/* Futuristic cyber tech matrix grids */}
+            <div className="absolute inset-0 z-0 bg-[linear-gradient(rgba(255,255,255,0.003)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.003)_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none opacity-40" />
+
+            {/* Circular glowing close button */}
+            <button 
+              onClick={() => setShowAuthChoice(false)}
+              className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:text-[#a8ff3e] hover:border-[#a8ff3e]/30 hover:bg-[#a8ff3e]/10 transition-all duration-300 z-10 active:scale-95 shadow-[0_0_15px_rgba(0,0,0,0.5)]"
+            >
+              <X size={18} />
+            </button>
+
+            {/* Modal Heading block */}
+            <div className="relative z-10 text-center mb-10 space-y-3">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-emerald-500/30 bg-emerald-500/5 text-[#a8ff3e] text-[10px] font-bold tracking-widest font-mono">
+                <Brain size={12} className="animate-pulse" />
+                <span>AUTHENTICATION PROTOCOL</span>
+              </div>
+              <h2 className="text-3xl font-extrabold tracking-tight text-white font-sora">
+                Initialize Orbitly Connection
+              </h2>
+              <p className="text-slate-400 text-xs max-w-md mx-auto leading-relaxed">
+                Configure your active session access. Select whether to authenticate into your existing dashboard workspace or provision a new affiliate pipeline.
+              </p>
+            </div>
+
+            {/* Interactive Grid options */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full relative z-10">
+              {/* Option A: Login */}
+              <Link 
+                to="/login"
+                onClick={() => setShowAuthChoice(false)}
+                className="group relative flex flex-col justify-between p-6 rounded-[1.8rem] bg-slate-950/60 border border-white/5 hover:border-[#a8ff3e]/35 transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_15px_40px_rgba(168,255,62,0.12)] overflow-hidden"
+              >
+                <div className="absolute inset-0 bg-gradient-to-b from-[#a8ff3e]/0 to-[#a8ff3e]/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="space-y-4">
+                  <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 group-hover:text-[#a8ff3e] group-hover:border-[#a8ff3e]/30 group-hover:bg-[#a8ff3e]/10 transition-all duration-500 relative">
+                    <div className="absolute inset-0 rounded-2xl bg-[#a8ff3e]/5 opacity-0 group-hover:opacity-100 blur-md transition-opacity duration-500" />
+                    <Key size={18} className="relative z-10" />
+                  </div>
+                  <div>
+                    <h3 className="text-slate-200 font-bold font-sora text-sm group-hover:text-white transition-colors">
+                      Access Workspace
+                    </h3>
+                    <p className="text-slate-500 text-[10px] mt-1.5 leading-relaxed group-hover:text-slate-400 transition-colors">
+                      Already registered with AffiliateCRM? Connect using your existing secure credentials to continue pipeline tracking.
+                    </p>
+                  </div>
+                </div>
+                <div className="mt-8 flex items-center gap-1.5 text-[10px] font-bold text-slate-400 group-hover:text-[#a8ff3e] transition-colors">
+                  <span>Sign In Pipeline</span>
+                  <ChevronRight size={12} className="transform group-hover:translate-x-1 transition-transform" />
+                </div>
+              </Link>
+
+              {/* Option B: Register */}
+              <Link 
+                to="/register"
+                onClick={() => setShowAuthChoice(false)}
+                className="group relative flex flex-col justify-between p-6 rounded-[1.8rem] bg-slate-950/60 border border-white/5 hover:border-emerald-400/35 transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_15px_40px_rgba(16,185,129,0.12)] overflow-hidden"
+              >
+                <div className="absolute inset-0 bg-gradient-to-b from-emerald-500/0 to-emerald-500/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="space-y-4">
+                  <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 group-hover:text-emerald-400 group-hover:border-emerald-400/30 group-hover:bg-emerald-500/10 transition-all duration-500 relative">
+                    <div className="absolute inset-0 rounded-2xl bg-emerald-500/5 opacity-0 group-hover:opacity-100 blur-md transition-opacity duration-500" />
+                    <Sparkles size={18} className="relative z-10" />
+                  </div>
+                  <div>
+                    <h3 className="text-slate-200 font-bold font-sora text-sm group-hover:text-white transition-colors">
+                      Provision Account
+                    </h3>
+                    <p className="text-slate-500 text-[10px] mt-1.5 leading-relaxed group-hover:text-slate-400 transition-colors">
+                      Ready to build your partner network? Deploy your new affiliate profile in under 30 seconds for free.
+                    </p>
+                  </div>
+                </div>
+                <div className="mt-8 flex items-center gap-1.5 text-[10px] font-bold text-slate-400 group-hover:text-emerald-400 transition-colors">
+                  <span>Create Account</span>
+                  <ChevronRight size={12} className="transform group-hover:translate-x-1 transition-transform" />
+                </div>
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
 
     </div>
   );
