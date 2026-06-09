@@ -29,6 +29,15 @@ import logo from '../assets/logo.png';
 export default function Landing() {
   const { user } = useAuth();
   const [showAuthChoice, setShowAuthChoice] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
   
   // Interactive Sandbox state
   const [selectedDemoLead, setSelectedDemoLead] = useState(0);
@@ -160,8 +169,8 @@ export default function Landing() {
       </div>
 
       {/* 1. Header/Navbar */}
-      <header className="sticky top-0 z-50 w-full bg-[#0a1a0f]/40 backdrop-blur-lg border-b border-white/[0.04]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <header className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-500 ${scrolled ? 'bg-[#0a1a0f]/85 backdrop-blur-lg border-b border-white/[0.08] shadow-[0_10px_30px_rgba(0,0,0,0.5)] py-2.5' : 'bg-transparent py-5'}`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           {/* Brand Logo */}
           <div className="flex items-center gap-3 select-none">
             <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-emerald-500/30 via-lime-500/20 to-transparent border border-white/10 flex items-center justify-center shadow-[0_0_20px_rgba(168,255,62,0.15)] relative overflow-hidden">
@@ -170,7 +179,7 @@ export default function Landing() {
             </div>
             <div className="flex flex-col">
               <span className="text-slate-100 font-extrabold text-base tracking-wide font-sora leading-tight">AffiliateCRM</span>
-              <span className="text-[9px] text-[#a8ff3e] font-mono tracking-widest uppercase">Orbitly-AI</span>
+              <span className="text-[9px] text-[#a8ff3e] font-mono tracking-widest uppercase">Enterprise CRM</span>
             </div>
           </div>
 
@@ -212,7 +221,7 @@ export default function Landing() {
       </header>
 
       {/* 2. Hero Section */}
-      <section className="relative z-10 pt-16 pb-12 md:pt-28 md:pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="relative z-10 pt-32 pb-12 md:pt-48 md:pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         {/* Premium Capsule Tag */}
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#a8ff3e]/25 bg-[#a8ff3e]/5 text-[#a8ff3e] text-xs font-semibold mb-6 animate-fade-in shadow-[0_0_15px_rgba(168,255,62,0.05)]">
           <Sparkle size={12} className="text-emerald-400 animate-spin" style={{ animationDuration: '6s' }} />
@@ -811,18 +820,21 @@ export default function Landing() {
       {/* 9. Footer Section */}
       <footer className="border-t border-white/[0.05] bg-[#0a1a0f]/60 py-16 relative z-10 select-none">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-8">
-          <div className="flex items-center gap-3">
+          <div 
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            className="flex items-center gap-3 cursor-pointer hover:opacity-80 transition-opacity duration-300"
+          >
             <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-emerald-500/20 to-lime-500/20 border border-white/10 flex items-center justify-center shadow-[0_0_15px_rgba(168,255,62,0.1)]">
               <img src={logo} alt="Logo" className="w-5 h-5 object-contain" />
             </div>
             <div className="flex flex-col text-left">
               <span className="text-slate-300 font-bold tracking-wide font-sora text-sm leading-tight">AffiliateCRM</span>
-              <span className="text-[8px] text-slate-600 font-mono tracking-widest">ORBITLY-AI EDITION</span>
+              <span className="text-[8px] text-slate-600 font-mono tracking-widest">ENTERPRISE EDITION</span>
             </div>
           </div>
 
           <p className="text-[11px] text-slate-600 text-center">
-            &copy; {new Date().getFullYear()} AffiliateCRM. Orbitly Landing Page design replicate. All rights reserved.
+            &copy; {new Date().getFullYear()} AffiliateCRM. All rights reserved.
           </p>
 
           <div className="flex gap-6 text-[11px] text-slate-500 font-semibold uppercase tracking-wider">
@@ -881,7 +893,7 @@ export default function Landing() {
                 <span>AUTHENTICATION PROTOCOL</span>
               </div>
               <h2 className="text-3xl font-extrabold tracking-tight text-white font-sora">
-                Initialize Orbitly Connection
+                Initialize Secure Connection
               </h2>
               <p className="text-slate-400 text-xs max-w-md mx-auto leading-relaxed">
                 Configure your active session access. Select whether to authenticate into your existing dashboard workspace or provision a new affiliate pipeline.
